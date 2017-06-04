@@ -10,7 +10,7 @@ var cfdController = require('./CfdController');
 var request = require("request"),
   cheerio = require("cheerio"),
   urls = ["http://www.wunderground.com/cgi-bin/findweather/getForecast?&query=" + 02888, "http://www.wunderground.com/cgi-bin/findweather/getForecast?&query=" + 02881];
-	  
+  urls=["http://www.nasdaq.com/symbol/aapl/analyst-research","http://www.nasdaq.com/symbol/sbux/analyst-research"];	  
 var temp;
 
 module.exports = {
@@ -33,7 +33,18 @@ module.exports = {
 		    var $ = cheerio.load(body),
 		      temp = $("[data-variable='temperature'] .wx-value").html();
 			  
-			  Cfd.create({name:temp}).exec(function (err, finn){
+			  temp= $(".qwidget-dollar").html();
+			  temp2=$(".half-width-wide").html();
+			  temp3=$.html();
+			  start_cons=temp3.substring(temp3.indexOf("Consensus</td>"));
+			  end_cons=start_cons.substring(0,start_cons.indexOf("</table>"));
+			  start_block=end_cons.substring(end_cons.indexOf("<tr>"));
+			  end_block=start_block.substring(0,start_block.indexOf("</tr>"));
+			  end_block=end_block.replace(new RegExp('<td align="left"></td>', 'g'), '');
+			  
+			  var cons=end_block.substring(end_block.indexOf('left">')+6,end_block.indexOf("</td"));
+			  
+			  Cfd.create({name:temp, consensus:cons}).exec(function (err, finn){
 				  if (err) { return res.serverError(err); }
 
 				  sails.log('Finn\'s id is:', finn.id);
