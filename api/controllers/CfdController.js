@@ -6,6 +6,16 @@
  */
 
 module.exports = {
+
+hello: function (req, res) {
+  
+    console.log("hello");
+    return res.json({
+
+      todo: 'Not implemented yet!'
+    });
+    },
+
 	
 };
 
