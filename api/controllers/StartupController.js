@@ -16,7 +16,7 @@ var temp;
 module.exports = {
 
 
-/*
+
 	
 	find: function (req, res) {
 
@@ -45,6 +45,6 @@ module.exports = {
 		    });
 	    
   	},
-*/
+
 };
 
