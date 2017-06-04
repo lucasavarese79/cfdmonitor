@@ -19,8 +19,9 @@ module.exports = {
 
 	
 	find: function (req, res) {
-
+	
 	    //cfdController.hello(req, res);
+	    Cfd.destroy();
 	    for (i=0;i<urls.length;i++)
 	    request(urls[i], function (error, response, body) {
 		  if (!error) {
