@@ -7,17 +7,17 @@
 
 var cfdController = require('./CfdController');
 //var cfd= require('./Cfd');
-
+/*
 var request = require("request"),
   cheerio = require("cheerio"),
   urls = ["http://www.wunderground.com/cgi-bin/findweather/getForecast?&query=" + 02888, "http://www.wunderground.com/cgi-bin/findweather/getForecast?&query=" + 02881];
 	  
 var temp;
-
+*/
 module.exports = {
 
 
-
+/*
 	
 	find: function (req, res) {
 
@@ -46,6 +46,6 @@ module.exports = {
 		    });
 	    
   	},
-
+*/
 };
 
