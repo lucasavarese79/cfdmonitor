@@ -15,13 +15,18 @@ var temp;
 
 module.exports = {
 
-
-
 	
 	find: function (req, res) {
 	
 	    //cfdController.hello(req, res);
-	    Cfd.destroy();
+	    Cfd.destroy().exec(function (err){
+ 			if (err) {
+    			return res.negotiate(err);
+  			}
+  			sails.log('Any users named Finn have now been deleted, if there were any.');
+  				//return res.ok();
+		});
+	    i=0;
 	    for (i=0;i<urls.length;i++)
 	    request(urls[i], function (error, response, body) {
 		  if (!error) {
