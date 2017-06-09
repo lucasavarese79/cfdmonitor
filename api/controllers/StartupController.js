@@ -92,9 +92,16 @@ module.exports = {
 				  end_block=end_block.replace(new RegExp('<td align="left"></td>', 'g'), '');
 				  
 				  var cons=end_block.substring(end_block.indexOf('left">')+6,end_block.indexOf("</td"));
-				  sails.log("URL:" + url_temp+" "+temp+" "+cons);
+				  var i_temp=null;
+				  var delta=null;
+				  if (temp!=null){
+				  	i_temp=temp.substring(1);
+				 	delta=+(cons-i_temp).toFixed(2);	
+
+				  }
 				  
-				  Cfd.create({name:_cfd, value:temp, consensus:cons}).exec(function (err, finn){
+				  sails.log("URL:" + url_temp+" "+i_temp+" "+cons+" "+delta);
+				  Cfd.create({name:_cfd, value:i_temp, consensus:cons, delta:delta}).exec(function (err, finn){
 					  if (err) { return res.serverError(err); }
 
 					  sails.log('Finn\'s id is:', finn.id);

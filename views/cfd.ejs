@@ -2,10 +2,11 @@
 <table>
 <% cfds.forEach ((_cfd, i)=>{%>
 			<tr>
-			<td width=25%><%=_cfd.name%></td>
-			<td width=25%><%=_cfd.value%></td>
-			<td width=25%><%=_cfd.consensus%></td>
-			<td width=25%><img src="http://www.nasdaq.com/charts/<%=_cfd.name%>_smallrm.jpeg"/></td>
+			<td width=20%><%=_cfd.name%></td>
+			<td width=20%><%=_cfd.value%></td>
+			<td width=20%><%=_cfd.consensus%></td>
+			<td width=20%><%=_cfd.delta%>
+			<td width=20%><img src="http://www.nasdaq.com/charts/<%=_cfd.name%>_smallrm.jpeg"/></td>
 			</tr>
 			<%			});%>
 			</table>
