@@ -83,6 +83,7 @@ module.exports = {
 			    var $ = cheerio.load(body),
 			      temp = $("[data-variable='temperature'] .wx-value").html();
 				  temp= $(".qwidget-dollar").html();
+				  sails.log("VALUE: "+temp);
 				  temp2=$(".half-width-wide").html();
 				  temp3=$.html();
 				  start_cons=temp3.substring(temp3.indexOf("Consensus</td>"));
