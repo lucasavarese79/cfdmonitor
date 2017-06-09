@@ -78,7 +78,7 @@ module.exports = {
 			var url_temp=prefix+_cfd+suffix;
 			sails.log("URL:" + url_temp);
 				  
-		    setTimeout(request,5000*i,url_temp,function (error, response, body) {
+		    setTimeout(request,5000*i,prefix+_cfd+suffix,function (error, response, body) {
 			  if (!error) {
 			    var $ = cheerio.load(body),
 			      temp = $("[data-variable='temperature'] .wx-value").html();
@@ -94,7 +94,7 @@ module.exports = {
 				  var cons=end_block.substring(end_block.indexOf('left">')+6,end_block.indexOf("</td"));
 				  sails.log("URL:" + url_temp+" "+temp+" "+cons);
 				  
-				  Cfd.create({name:url_temp, value:temp, consensus:cons}).exec(function (err, finn){
+				  Cfd.create({name:_cfd, value:temp, consensus:cons}).exec(function (err, finn){
 					  if (err) { return res.serverError(err); }
 
 					  sails.log('Finn\'s id is:', finn.id);

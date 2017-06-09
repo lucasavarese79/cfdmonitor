@@ -1,0 +1,11 @@
+
+<table>
+<% cfds.forEach ((_cfd, i)=>{%>
+			<tr>
+			<td><%=_cfd.name%></td>
+			<td><%=_cfd.value%></td>
+			<td><%=_cfd.consensus%></td>
+			<td><img src="http://www.nasdaq.com/charts/<%=_cfd.name%>_smallrm.jpeg"/></td>
+			</tr>
+			<%			});%>
+			</table>

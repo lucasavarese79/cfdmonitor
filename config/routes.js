@@ -32,6 +32,8 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  '/cfd' : 'CfdController.hello',
+
   '/': {
     view: 'homepage'
   }
