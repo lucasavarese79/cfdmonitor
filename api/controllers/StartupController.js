@@ -13,7 +13,7 @@ var request = require("request"),
   urls=["DDD",
 "AIG",
 "BABA",
-"GOOGLE",
+"GOOG",
 "MO",
 "AMZN",
 "AXP",
@@ -30,7 +30,7 @@ var request = require("request"),
 "KO",
 "EBAY",
 "FB",
-"RACEUS",
+"RACE",
 "FSLR",
 "F",
 "GE",
@@ -102,7 +102,7 @@ module.exports = {
 				  }
 				  
 				  sails.log("URL:" + url_temp+" "+i_temp+" "+cons+" "+delta);
-				  Cfd.create({name:_cfd, value:i_temp, consensus:cons, delta:delta}).exec(function (err, finn){
+				  Cfd.create({name:_cfd, value:i_temp, consensus:cons, delta:delta, deltaperc: +(delta/i_temp*100).toFixed(2)}).exec(function (err, finn){
 					  if (err) { return res.serverError(err); }
 
 					  sails.log('Finn\'s id is:', finn.id);

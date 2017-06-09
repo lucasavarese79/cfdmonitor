@@ -12,7 +12,10 @@ module.exports = {
 hello: function (req, res) {
   
     console.log("hello");
-   Cfd.find().then(function (data){
+
+   Cfd.find({
+   		sort: 'deltaperc DESC'
+   }).then(function (data){
    		sails.log("DATA: "+data);
    		return res.view('cfd', {
 	      			cfds: data
