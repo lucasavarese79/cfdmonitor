@@ -80,13 +80,17 @@ module.exports = {
 				  
 		    setTimeout(request,5000*i,prefix+_cfd+suffix,function (error, response, body) {
 			  if (!error) {
-			    var $ = cheerio.load(body),
+			    /*var $ = cheerio.load(body),
 			      temp = $("[data-variable='temperature'] .wx-value").html();
 				  temp= $(".qwidget-dollar").html();
 				  sails.log("VALUE: "+temp);
 				  temp2=$(".half-width-wide").html();
 				  temp3=$.html();
-				  start_cons=temp3.substring(temp3.indexOf("Consensus</td>"));
+					*/
+					var $ = cheerio.load(body),
+			      temp3 = $.html();
+				  
+					start_cons=temp3.substring(temp3.indexOf("Consensus</td>"));
 				  end_cons=start_cons.substring(0,start_cons.indexOf("</table>"));
 					sails.log("BIGBLOCK: "+end_cons);
 					
