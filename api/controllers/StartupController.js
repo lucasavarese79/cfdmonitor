@@ -73,13 +73,15 @@ var temp;
 module.exports = {
 
 	call: function (req, res){
-
-		urls.forEach ((_cfd, i)=>{
+		i=0;
+		_cfd=urls[0];
+		//urls.forEach ((_cfd, i)=>{
 			var url_temp=prefix+_cfd+suffix;
 			sails.log("URL:" + url_temp);
 				  
 		    setTimeout(request,5000*i,prefix+_cfd+suffix,function (error, response, body) {
 			  if (!error) {
+					sails.log("START");
 			    /*var $ = cheerio.load(body),
 			      temp = $("[data-variable='temperature'] .wx-value").html();
 				  temp= $(".qwidget-dollar").html();
@@ -120,13 +122,13 @@ module.exports = {
 					  //return res.ok();
 					});	
 			    	      
-			    console.log("It’s " + temp + " degrees Fahrenheit.");
+			    sails.log("It’s " + temp + " degrees Fahrenheit.");
 			  } else {
-			    console.log("We’ve encountered an error: " + error);
+			    sails.log("We’ve encountered an error: " + error);
 			  }
 			});
 			
-		});
+		//});
 		return res.json({
 		    todo: 'Not implemented yet!'
 		 });
