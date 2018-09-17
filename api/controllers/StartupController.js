@@ -91,7 +91,9 @@ module.exports = {
 			      temp3 = $.html();
 				  
 					start_cons=temp3.substring(temp3.indexOf("Consensus</td>"));
-				  end_cons=start_cons.substring(0,start_cons.indexOf("</table>"));
+					sails.log("PRE BIGBLOCK: "+start_cons);
+					
+					end_cons=start_cons.substring(0,start_cons.indexOf("</table>"));
 					sails.log("BIGBLOCK: "+end_cons);
 					
 					start_block=end_cons.substring(end_cons.indexOf("<tr>"));
