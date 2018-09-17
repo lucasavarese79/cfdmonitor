@@ -88,11 +88,16 @@ module.exports = {
 				  temp3=$.html();
 				  start_cons=temp3.substring(temp3.indexOf("Consensus</td>"));
 				  end_cons=start_cons.substring(0,start_cons.indexOf("</table>"));
-				  start_block=end_cons.substring(end_cons.indexOf("<tr>"));
+					sails.log("BIGBLOCK: "+end_cons);
+					
+					start_block=end_cons.substring(end_cons.indexOf("<tr>"));
 				  end_block=start_block.substring(0,start_block.indexOf("</tr>"));
-				  end_block=end_block.replace(new RegExp('<td align="left"></td>', 'g'), '');
+					sails.log("INNER BLOCK: "+ end_block);
 				  
-				  var cons=end_block.substring(end_block.indexOf('left">')+6,end_block.indexOf("</td"));
+					end_block=end_block.replace(new RegExp('<td align="left"></td>', 'g'), '');
+					sails.log("INNER BLOCK AFTER: "+ end_block);
+				  
+					var cons=end_block.substring(end_block.indexOf('left">')+6,end_block.indexOf("</td"));
 				  var i_temp=null;
 				  var delta=null;
 				  if (temp!=null){
