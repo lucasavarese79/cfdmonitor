@@ -4,7 +4,7 @@
  * @description :: Server-side logic for managing cfds
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
-
+//var imageDiff = require('image-diff');
 module.exports = {
 
 
@@ -16,7 +16,13 @@ hello: function (req, res) {
    Cfd.find({
    		sort: 'deltaperc DESC'
    }).then(function (data){
-   		sails.log("DATA: "+data);
+       sails.log("DATA: "+data);
+       /*imageDiff({
+        actualImage: 'https://www.nasdaq.com/charts/'+_cfd+'_smallrm.jpeg',
+        expectedImage: 'images/60smallrm.jpg'
+       }, function (err, imagesAreSame) {
+          sails.log("IMAGE "+_cfd+": TRUE");
+      })*/
    		return res.view('cfd', {
 	      			cfds: data
 	      			

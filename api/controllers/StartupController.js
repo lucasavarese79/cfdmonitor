@@ -63,9 +63,9 @@ var request = require("request"),
 "YHOO",
 "ZNGA"]
 ;
+//urls=["ddd","aapl"];
 
-
-  var prefix="http://www.nasdaq.com/symbol/";
+  var prefix="https://www.nasdaq.com/symbol/";
   var suffix="/analyst-research";
 
 var temp;
@@ -75,22 +75,28 @@ module.exports = {
 	call: function (req, res){
 		i=0;
 		_cfd=urls[0];
-		//urls.forEach ((_cfd, i)=>{
+		
+		var customHeaderRequest = request.defaults({
+			headers: {'User-Agent': 'curl'}
+	 })
+		urls.forEach ((_cfd, i)=>{
 			var url_temp=prefix+_cfd+suffix;
+			//url_temp="http://localhost:8888/nasdaq/nasdaq.html";
+			//url_temp="https://www.google.com";
+			//url_temp="https://www.nasdaq.com";
 			sails.log("URL:" + url_temp);
-				  
-		    setTimeout(request,5000*i,prefix+_cfd+suffix,function (error, response, body) {
-			  if (!error) {
+			
+
+			//customHeaderRequest(url_temp, function (error, response, body) {  
+		    setTimeout(customHeaderRequest,5000*i,url_temp,function (error, response, body) {
+				sails.log("error: "+error);
+					if (!error) {
 					sails.log("START");
-			    /*var $ = cheerio.load(body),
-			      temp = $("[data-variable='temperature'] .wx-value").html();
-				  temp= $(".qwidget-dollar").html();
-				  sails.log("VALUE: "+temp);
-				  temp2=$(".half-width-wide").html();
-				  temp3=$.html();
-					*/
+			   
 					var $ = cheerio.load(body),
-			      temp3 = $.html();
+					temp= $(".qwidget-dollar").html();
+			  	temp2=$(".half-width-wide").html();
+			    temp3 = $.html();
 				  
 					start_cons=temp3.substring(temp3.indexOf("Consensus</td>"));
 					sails.log("PRE BIGBLOCK: "+start_cons);
@@ -114,7 +120,11 @@ module.exports = {
 
 				  }
 				  
-				  sails.log("URL:" + url_temp+" "+i_temp+" "+cons+" "+delta);
+					sails.log("URL:" + url_temp+" "+i_temp+" "+cons+" "+delta);
+					
+					
+
+					
 				  Cfd.create({name:_cfd, value:i_temp, consensus:cons, delta:delta, deltaperc: +(delta/i_temp*100).toFixed(2)}).exec(function (err, finn){
 					  if (err) { return res.serverError(err); }
 
@@ -128,7 +138,7 @@ module.exports = {
 			  }
 			});
 			
-		//});
+		});
 		return res.json({
 		    todo: 'Not implemented yet!'
 		 });
