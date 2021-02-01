@@ -9,7 +9,7 @@ var cfdController = require('./CfdController');
 
 var request = require("request"),
   cheerio = require("cheerio"),
-  urls = ["http://www.wunderground.com/cgi-bin/findweather/getForecast?&query=" + 02888, "http://www.wunderground.com/cgi-bin/findweather/getForecast?&query=" + 02881];
+  //urls = ["http://www.wunderground.com/cgi-bin/findweather/getForecast?&query=" + 02888, "http://www.wunderground.com/cgi-bin/findweather/getForecast?&query=" + 02881];
   urls=["DDD",
 "AIG",
 "BABA",
@@ -63,7 +63,7 @@ var request = require("request"),
 "YHOO",
 "ZNGA"]
 ;
-//urls=["ddd","aapl"];
+urls=["aapl"];
 
   var prefix="https://www.nasdaq.com/symbol/";
   var suffix="/analyst-research";
@@ -94,24 +94,18 @@ module.exports = {
 					sails.log("START");
 			   
 					var $ = cheerio.load(body),
-					temp= $(".qwidget-dollar").html();
+				/*	temp= $(".qwidget-dollar").html();
 			  	temp2=$(".half-width-wide").html();
-			    temp3 = $.html();
+			    */
+				temp3 = $.html();
 				  
-					start_cons=temp3.substring(temp3.indexOf("Consensus</td>"));
+				  
+				  
+					start_cons=temp3.substring(temp3.indexOf("upgrade-downgrade-b__rating-value\">"));
 					sails.log("PRE BIGBLOCK: "+start_cons);
 					
-					end_cons=start_cons.substring(0,start_cons.indexOf("</table>"));
-					sails.log("BIGBLOCK: "+end_cons);
+					var cons=start_cons.substring(0,start_cons.indexOf("</span"));
 					
-					start_block=end_cons.substring(end_cons.indexOf("<tr>"));
-				  end_block=start_block.substring(0,start_block.indexOf("</tr>"));
-					sails.log("INNER BLOCK: "+ end_block);
-				  
-					end_block=end_block.replace(new RegExp('<td align="left"></td>', 'g'), '');
-					sails.log("INNER BLOCK AFTER: "+ end_block);
-				  
-					var cons=end_block.substring(end_block.indexOf('left">')+6,end_block.indexOf("</td"));
 				  var i_temp=null;
 				  var delta=null;
 				  if (temp!=null){
@@ -192,6 +186,38 @@ module.exports = {
 		return res.json({
 		    	todo: 'Not implemented yet!'
 		    });
+
+
+
+
+
+*/
+
+/*
+		temp= $(".qwidget-dollar").html();
+			  	temp2=$(".half-width-wide").html();
+			    temp3 = $.html();
+				  
+					start_cons=temp3.substring(temp3.indexOf("Consensus</td>"));
+					sails.log("PRE BIGBLOCK: "+start_cons);
+					
+					end_cons=start_cons.substring(0,start_cons.indexOf("</table>"));
+					sails.log("BIGBLOCK: "+end_cons);
+					
+					start_block=end_cons.substring(end_cons.indexOf("<tr>"));
+				  end_block=start_block.substring(0,start_block.indexOf("</tr>"));
+					sails.log("INNER BLOCK: "+ end_block);
+				  
+					end_block=end_block.replace(new RegExp('<td align="left"></td>', 'g'), '');
+					sails.log("INNER BLOCK AFTER: "+ end_block);
+				  
+					var cons=end_block.substring(end_block.indexOf('left">')+6,end_block.indexOf("</td"));
+				  var i_temp=null;
+				  var delta=null;
+				  if (temp!=null){
+				  	i_temp=temp.substring(1);
+				 	delta=+(cons-i_temp).toFixed(2);	
+
 */	    
   	},
 
