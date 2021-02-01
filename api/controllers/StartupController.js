@@ -63,7 +63,7 @@ var request = require("request"),
 "YHOO",
 "ZNGA"]
 ;
-urls=["aapl"];
+urls=["AAPL"];
 
   var prefix="https://www.nasdaq.com/symbol/";
   var suffix="/analyst-research";
