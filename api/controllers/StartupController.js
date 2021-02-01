@@ -112,6 +112,7 @@ module.exports = {
 				  	i_temp=temp.substring(1);
 				 	delta=+(cons-i_temp).toFixed(2);	
 
+
 				  }
 				  
 					sails.log("URL:" + url_temp+" "+i_temp+" "+cons+" "+delta);
